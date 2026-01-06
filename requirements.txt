@@ -1,0 +1,8 @@
+streamlit
+requests
+pandas
+openpyxl
+pillow
+pyzbar
+opencv-python
+numpy
