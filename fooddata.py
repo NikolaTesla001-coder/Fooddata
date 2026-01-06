@@ -1,42 +1,13 @@
 import streamlit as st
 import requests
 import pandas as pd
-from PIL import Image
-import numpy as np
-import cv2
 
 st.set_page_config(page_title="Food Nutrition Analyzer", layout="centered")
 st.title("Food Nutrition Analyzer")
 
-st.write("Upload a barcode image or enter the barcode manually.")
+st.write("Enter the barcode (scan using your phone camera externally if needed).")
 
-uploaded_image = st.file_uploader("Upload Barcode Image", type=["png", "jpg", "jpeg"])
-barcode_manual = st.text_input("Or enter barcode manually")
-
-barcode = None
-
-# ---- Decode barcode from image using OpenCV (robust) ----
-if uploaded_image:
-    image = Image.open(uploaded_image).convert("RGB")
-    img_array = np.array(image)
-
-    detector = cv2.barcode.BarcodeDetector()
-    result = detector.detectAndDecode(img_array)
-
-    # Normalize return type
-    if isinstance(result, tuple):
-        decoded_info = result[0]
-    else:
-        decoded_info = result
-
-    if decoded_info:
-        barcode = decoded_info.strip()
-        st.success(f"Detected barcode: {barcode}")
-    else:
-        st.warning("No barcode detected in image.")
-
-elif barcode_manual:
-    barcode = barcode_manual.strip()
+barcode = st.text_input("Enter Barcode", placeholder="e.g. 3017624010701")
 
 # ---- Fetch product info ----
 if barcode and st.button("Fetch Product Info"):
