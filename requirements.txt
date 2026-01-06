@@ -2,9 +2,5 @@ streamlit
 requests
 pandas
 openpyxl
-pillow
-opencv-python
-numpy
 streamlit-webrtc
 av
-opencv-python
