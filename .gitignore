@@ -1,0 +1,12 @@
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Optional — ignore whole streamlit config folder
+# .streamlit/
+
+# Python junk
+__pycache__/
+*.pyc
+
+# Environment files
+.env
