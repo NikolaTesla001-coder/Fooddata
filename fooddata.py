@@ -24,12 +24,12 @@ def extract_json(text):
     return json.loads(match.group())
 
 # ---------------- Tabs ----------------
-tab1, tab2 = st.tabs(["Nutrition Analyzer", "Object Counter"])
+tab1, tab2 = st.tabs([ "Object Counter","Nutrition Analyzer"])
 
 # ============================================================
 # TAB 1 — Nutrition Analyzer (UNCHANGED)
 # ============================================================
-with tab1:
+with tab2:
     barcode = st.text_input("Enter Barcode", placeholder="e.g. 0011110119681")
 
     if st.button("Fetch Product Info") and barcode:
@@ -160,7 +160,7 @@ Return ONLY valid JSON:
         generation_config={"temperature": 0.1}
     )
     return response.text
-with tab2:
+with tab1:
     st.subheader("Upload an image to count objects")
 
     source = st.radio(
