@@ -184,6 +184,7 @@ with tab1:
             key="counter_camera"
         )
 
+    name=st.text_input("enter the name of the product")
     
     if uploaded_image:
         image = Image.open(uploaded_image)
@@ -215,3 +216,17 @@ with tab1:
                     st.text(raw_response)
                 
                 
+        excel_summary2= pd.DataFrame([{
+                "Product Name": name ,
+                "Number": st.session_state.get("detect_count", 1),
+            }])
+        
+        with pd.ExcelWriter("nutrition_report.xlsx", engine="openpyxl") as writer:
+                excel_summary2.to_excel(writer, sheet_name="Summary", index=False)
+        with open("report.xlsx", "rb") as f:
+                st.download_button(
+                    "Download Excel Report",
+                    f,
+                    file_name="report.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
